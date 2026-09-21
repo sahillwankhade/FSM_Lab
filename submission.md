@@ -12,6 +12,7 @@ Engineering students studying mechatronics, digital logic, and control systems. 
 
 - A pure-JavaScript FSM logic layer (`src/fsm/`) comprising a table-driven FSM engine, master simulation clock, and combinational gate-tree logic with 49 passing tests.
 - A 3D simulation scene (`src/scene/`) using `@react-three/fiber` featuring a dark mechatronics laboratory environment and a transparent industrial washing machine with independently animated components.
+- Subpath-compatible relative build configuration (`base: './'`) for static deployment.
 
 ### Core Features
 
@@ -21,13 +22,13 @@ Engineering students studying mechatronics, digital logic, and control systems. 
 - **Transparent Washing Machine**: Outer casing with transparent material showing internal components: inner tub, drum with paddles & instanced drainage holes, motor, drive belt, inlet valve & pipe, drain pump & pipe, door with glass and lock bolt.
 - **Drum Animation**: Smooth frame-based rotation driven by RPM and direction props.
 - **Camera Controls**: Interactive OrbitControls with clamped polar angles, distance bounds, and smooth damping.
-- **Test Overlay**: Interactive HTML controls to test drum RPM (0–800) and direction (CW/CCW).
+- **Subpath Static Deployment**: Configured with `base: './'` so static bundles load cleanly when hosted under subdomains or subpaths.
 
 ### Technical Architecture
 
 - **Logic Layer (`src/fsm/`)**: `clock.mjs`, `gates.mjs`, and `engine.mjs` built as standalone ES modules without React/Three.js dependencies.
 - **3D Scene Layer (`src/scene/`)**: `Lab.jsx`, `WashingMachine.jsx`, `Drum.jsx`, and `CameraControls.jsx` built with `@react-three/fiber` and `three`.
-- **OrbitControls Integration**: Custom `CameraControls.jsx` extending `three/examples/jsm/controls/OrbitControls.js` via R3F `extend()`.
+- **Build Setup**: Vite with `@vitejs/plugin-react` and relative `base: './'`.
 
 ### Tech Stack
 
