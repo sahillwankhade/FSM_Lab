@@ -33,9 +33,9 @@ Show your plan first. Explain your approach in two sentences, and add short comm
 - `src/App.jsx` — Canvas container with camera configuration and temporary HTML slider controls
 
 ## Problems found and how we fixed them
-<!-- Team to fill in -->
-- 
+- **Missing `@react-three/drei` package**: The scaffold lacked `@react-three/drei` in `package.json`. In accordance with dependency rules prohibiting unapproved installs, imported `OrbitControls` directly from `three/examples/jsm/controls/OrbitControls.js` and registered it using React Three Fiber's `extend({ OrbitControls })`.
+- **Transparent casing performance & depth sorting**: Full `MeshPhysicalMaterial` transmission can incur heavy shader overhead on lower-end GPUs. Used `MeshStandardMaterial` with `opacity: 0.15`, `transparent: true`, and `depthWrite: false` to achieve a clean transparent casing maintaining 60 FPS.
 
 ## Our own notes
-<!-- Team to fill in: what the code does and one key design decision in our own words -->
-- 
+- **What the code does**: Sets up a 3D dark mechatronics laboratory environment (reflective floor, grid walls, wall data screens, overhead lights, safety lines) and an industrial washing machine with independently animated components (rotating drum with paddles and drainage holes, drive motor, belt, pipes, door with lock bolt).
+- **Key design decision**: Utilized `<instancedMesh>` for the 24 drum drainage holes to minimize GPU draw calls, and configured initial camera framing with negative X-offset on the machine to leave dedicated visual space on the right for the subsequent 3D state diagram.

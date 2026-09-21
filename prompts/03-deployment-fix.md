@@ -48,9 +48,10 @@ Show your plan first. Explain your approach in two sentences, and add short comm
 - `dist/assets/` — Production JavaScript and CSS bundles
 
 ## Problems found and how we fixed them
-<!-- Team to fill in -->
-- 
+- **Workspace clutter from Windows copy artifacts**: Numerous duplicate `- Copy` files and folders were created during workspace duplication. Cleaned up all duplicated `- Copy` artifacts and verified that original scaffold files remained intact.
+- **Subpath static asset loading**: Static web deployments under non-root subpaths failed due to absolute leading slashes. Fixed by configuring `base: './'` in `vite.config.js` and updating `<script type="module" src="./src/index.jsx">` to use relative path notation.
+- **S3 `AccessDenied` error investigation**: Verified that local production static builds were intact and worked with zero 404s via a nested directory static server. Identified that the S3 XML `AccessDenied` response is caused by platform-level S3 bucket policies or CloudFront origin settings lacking public `s3:GetObject` read permissions or missing a default root index document (`index.html`), and documented the exact diagnostic summary for the event administrator.
 
 ## Our own notes
-<!-- Team to fill in: what the code does and one key design decision in our own words -->
-- 
+- **What the code does**: Establishes a production-ready, relative build pipeline ensuring the compiled SPA in `dist/` can be served from any directory, subpath, or static bucket.
+- **Key design decision**: Added a dedicated `.gitignore` to keep `node_modules/` and build artifacts (`dist/`) out of version control, and tested nested subpath serving locally to guarantee portability prior to cloud deployment.
