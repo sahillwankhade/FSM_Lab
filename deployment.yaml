@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fsm_lab-react
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fsm_lab-react
+  template:
+    metadata:
+      labels:
+        app: fsm_lab-react
+    spec:
+      containers:
+      - name: web
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
