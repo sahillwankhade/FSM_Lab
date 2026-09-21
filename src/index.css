@@ -1,6 +1,5 @@
-/* index.css — Global reset and overlay styles for FSM_Lab */
+/* index.css — Global reset and HUD styles for FSM_Lab */
 
-/* Reset: fill the viewport, dark background, no scrollbars */
 * {
   margin: 0;
   padding: 0;
@@ -16,88 +15,161 @@ html, body, #root {
   color: #e0e0e0;
 }
 
-/* ── Test controls overlay ─────────────────────────────────────────── */
-/* Fixed panel in the bottom-left corner for the drum RPM slider and
-   direction toggle. Semi-transparent dark backdrop. */
-
-.test-controls {
+/* ── Top Guard Failed Toast Notification ────────────────────────── */
+.hud-toast {
   position: fixed;
-  bottom: 20px;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  background: rgba(220, 53, 69, 0.95);
+  border: 1px solid #ff4d5e;
+  border-radius: 8px;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 8px 24px rgba(220, 53, 69, 0.4);
+  backdrop-filter: blur(8px);
+  animation: toastSlideDown 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes toastSlideDown {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.toast-icon {
+  font-size: 24px;
+}
+
+.toast-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.toast-title {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #ffffff;
+}
+
+.toast-message {
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffdae0;
+}
+
+/* ── Left HUD & Sensor Control Panel ───────────────────────────── */
+.hud-panel {
+  position: fixed;
+  top: 20px;
   left: 20px;
   z-index: 100;
-  background: rgba(10, 10, 20, 0.85);
+  background: rgba(12, 14, 24, 0.88);
   border: 1px solid rgba(80, 200, 255, 0.25);
-  border-radius: 10px;
-  padding: 16px 20px;
+  border-radius: 12px;
+  padding: 18px 22px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  backdrop-filter: blur(8px);
-  min-width: 220px;
+  gap: 14px;
+  backdrop-filter: blur(10px);
+  min-width: 280px;
+  max-width: 320px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-.test-controls h3 {
-  margin: 0;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: rgba(80, 200, 255, 0.7);
-  font-weight: 600;
-}
-
-.test-controls label {
+.hud-header {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
-  font-size: 12px;
-  color: #aab;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 10px;
 }
 
-.test-controls .value-display {
-  font-size: 18px;
+.hud-header h2 {
+  font-size: 13px;
   font-weight: 700;
+  letter-spacing: 1.5px;
   color: #50c8ff;
-  font-variant-numeric: tabular-nums;
 }
 
-/* Range slider — custom styling */
-.test-controls input[type="range"] {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 4px;
-  border-radius: 2px;
-  background: rgba(80, 200, 255, 0.2);
-  outline: none;
-}
-
-.test-controls input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: #50c8ff;
-  cursor: pointer;
-  border: 2px solid #0a0a1a;
-}
-
-/* Direction toggle button */
-.test-controls button {
-  padding: 8px 14px;
-  border: 1px solid rgba(80, 200, 255, 0.3);
-  border-radius: 6px;
-  background: rgba(80, 200, 255, 0.1);
-  color: #50c8ff;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s, border-color 0.2s;
-  text-transform: uppercase;
+.hud-badge {
+  background: rgba(13, 110, 253, 0.25);
+  border: 1px solid #0d6efd;
+  color: #6ea8fe;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 4px;
   letter-spacing: 1px;
 }
 
-.test-controls button:hover {
-  background: rgba(80, 200, 255, 0.2);
-  border-color: rgba(80, 200, 255, 0.5);
+.hud-section h4 {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: #8a8aa0;
+  margin-bottom: 8px;
+}
+
+.sensor-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.sensor-btn {
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.sensor-btn.on {
+  background: rgba(25, 135, 84, 0.2);
+  border-color: #198754;
+  color: #75b798;
+}
+
+.sensor-btn.off {
+  background: rgba(220, 53, 69, 0.2);
+  border-color: #dc3545;
+  color: #ea868f;
+}
+
+.outputs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.output-item {
+  font-size: 11px;
+  color: #aab;
+}
+
+.output-item span {
+  font-weight: 700;
+  color: #50c8ff;
+}
+
+.hud-footer {
+  font-size: 11px;
+  color: #778;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 8px;
 }

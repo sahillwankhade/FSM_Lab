@@ -3,5 +3,10 @@
   "name": "FSM_Lab",
   "framework": "React",
   "database": "None",
-  "createdAt": 1789983699602
+  "createdAt": 1789983699602,
+  "publishedTitle": "FSM_Lab",
+  "publishedDescription": "",
+  "publishedVersion": "v3",
+  "publishedTags": "",
+  "cloudProjectId": "MAVxoWMEufboyR01iBvh"
 }
