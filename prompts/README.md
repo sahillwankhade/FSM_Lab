@@ -10,6 +10,7 @@ This folder records the engineering prompts used with the AI agent to design, bu
 | **01** | [01-stage1-fsm-engine.md](./01-stage1-fsm-engine.md) | Stage 1 | Build standalone FSM logic layer (clock, gates, table-driven engine, tests) with zero dependencies | `src/fsm/engine.mjs`<br>`src/fsm/clock.mjs`<br>`src/fsm/gates.mjs`<br>`src/fsm/tests/fsm.test.mjs`<br>`package.json` | Done |
 | **02** | [02-stage2-3d-scene.md](./02-stage2-3d-scene.md) | Stage 2 | Build 3D mechatronics lab and transparent industrial washing machine using Three.js / R3F | `src/scene/Lab.jsx`<br>`src/scene/WashingMachine.jsx`<br>`src/scene/Drum.jsx`<br>`src/scene/CameraControls.jsx`<br>`src/App.jsx`<br>`src/index.css` | Done |
 | **03** | [03-deployment-fix.md](./03-deployment-fix.md) | Deployment | Diagnose S3 AccessDenied error, configure relative base path for subpath hosting, and verify static build | `vite.config.js`<br>`index.html`<br>`.gitignore`<br>`dist/` | Done |
+| **04** | [04-stage3-control-panel-diagram.md](./04-stage3-control-panel-diagram.md) | Stage 3 | Connect 3D scene to FSM engine: useFsm hook, ControlPanel3D, StateDiagram3D, and HUD toast | `src/fsm/inputs.js`<br>`src/hooks/useFsm.js`<br>`src/scene/FsmSimulator.jsx`<br>`src/scene/ControlPanel3D.jsx`<br>`src/scene/StateDiagram3D.jsx`<br>`src/App.jsx`<br>`src/index.css` | Done |
 
 ---
 
